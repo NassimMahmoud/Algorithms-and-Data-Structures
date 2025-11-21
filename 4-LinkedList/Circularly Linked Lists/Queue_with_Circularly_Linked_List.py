@@ -1,0 +1,83 @@
+class CircularlyLinkedList():
+    
+    class Node():
+        def __init__(self,element=None,next=None):
+            self.element=element
+            self.next=next
+            
+    class Empty(Exception):
+        pass
+    
+    def __init__(self,element=None,next=None):
+        
+        self.head= self.Node(element,next)
+        self.tail= self.Node(element,next)
+        self.size=0
+    
+    def is_empty(self):
+      # Return True if the stack is empty
+      return self.size == 0
+  
+    def __len__(self):
+        # Return the number of elements in the stack
+        return self.size
+        
+       
+    def enqueue(self,element):
+        
+        #Add element e to the top of the stack
+        new_Node=self.Node(element)
+
+        if self.is_empty():
+            self.head = new_Node
+            self.tail = new_Node
+        else:
+            self.tail.next = new_Node
+            self.tail = new_Node 
+            self.tail.next = self.head
+                 
+        self.size +=1
+           
+    def top(self):
+        
+      #Return (but do not remove) the element at the top of the stack.
+      #Raise Empty exception if the stack is empty.
+
+      if self.is_empty():
+         raise self.Empty("Stack is empty")
+      return self.head.element
+            
+    def dequeue(self):
+        #Remove and return the element from the top of the stack 
+        if self.size==0 :
+         raise self.Empty("Stack is empty")
+        else :
+         answer=self.head.element
+         self.head=self.head.next
+         self.tail.next=self.head
+         self.size -=1
+         return answer
+    
+    def traverse(self):
+        temp=self.head
+        size=self.size
+        while size > 0: # to avoid infinite loop
+            size -=1
+            print(temp.element,end="---> ")
+            temp=temp.next
+            
+   
+      
+vv=CircularlyLinkedList()
+
+vv.enqueue(10)
+vv.enqueue(20) 
+vv.enqueue(30) 
+vv.enqueue(50)
+vv.enqueue(70)
+
+vv.traverse()
+
+
+
+
