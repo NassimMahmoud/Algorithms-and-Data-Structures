@@ -1,17 +1,16 @@
 
 def bubble_sort(A):
-    
-    
-    for i in range(len(A)-1,-1,-1):
-        print(i)
-        max=i
+
+    for i in range(len(A)-1, 0, -1):
+
         for j in range(i):
-            if A[j] > A[max]:
-               max=j
-        A[i],A[max]=A[max],A[i]
-        
+            if A[j] > A[j+1]:
+                A[j], A[j+1] = A[j+1], A[j]
+
     return A
 
+
+print(bubble_sort([8, 3, 2, 3, 1, 2, -5]))
         
         
 bubble_sort([8,3,2,3,1,2,-5])
